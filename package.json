@@ -1,0 +1,29 @@
+{
+	"name" : "privates",
+	"version" : "0.1",
+	"description" : "Classical Javascript inheritance with true private variables.",
+	"homepage": "http://github.com/CrabDude/Privates.js",
+	"repository": {
+		"type" : "git",
+		"url" : "git://github.com/CrabDude/privates.git"
+	},
+	"bugs" : { "web" : "http://github.com/CrabDude/sexy/issues" },
+	"author" : "Adam Crabtree <dude@noderiety.com> (http://noderiety.com)",
+	"main" : "lib/privates",
+	"directories" : { "lib" : "./lib/" },
+	"engines" : { "node" : ">=0.1.97" },
+	"licenses" : [{
+		"type" : "MIT",
+		"url" : "http://www.opensource.org/licenses/mit-license.html"
+	}],
+	keywords: [
+		"privates",
+		"oop",
+		"oojs",
+		"class",
+		"inheritance",
+		"base",
+		"multiple-inheritance",
+		"extend"
+	]
+}
