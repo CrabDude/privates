@@ -35,12 +35,12 @@ var Ninja = Person.extend((function() {
 
 
 var p = new Person(true);
-console.log(p,p.dance()); // => true
+p.dance(); // => true
 
 var n = new Ninja();
-console.log(n,n.dance()); // => false
-console.log(n.swingSword()); // => true
+n.dance(); // => false
+n.swingSword(); // => true
 
 // Should all be true
-console.log(p instanceof Person && p instanceof Class &&
-n instanceof Ninja && n instanceof Person && n instanceof Class);
+p instanceof Person && p instanceof Class &&
+n instanceof Ninja && n instanceof Person && n instanceof Class;
