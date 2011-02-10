@@ -7,7 +7,7 @@ var Person = Class.extend(function(pvtPerson) {
 			console.log("pvtPerson(this).hasSword: \r\n >> ", pvtPerson(this).hasSword); // => undefined
 			
 			pvtPerson(this).dancing = isDancing;
-			console.log("pvtPerson(this).dancing: \r\n >> ", pvtPerson(this).dancing); // => undefined
+			console.log("pvtPerson(this).dancing: \r\n >> ", pvtPerson(this).dancing); // => false
 		},
 		dance: function() {
 			return pvtPerson(this).dancing;
