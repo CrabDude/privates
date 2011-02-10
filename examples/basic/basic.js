@@ -1,5 +1,8 @@
 /*
- * Example showing the basic concept behind private variables 
+ * Basic Example showing how to create true private variables
+ * 
+ * Other examples such as Crockford's, http://www.crockford.com/javascript/private.html,
+ * initialize functions in the constructor, which is bad for performance. 
  * 
  */
 var Person = (function() {
