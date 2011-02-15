@@ -1,49 +1,52 @@
-/*
- * Basic Example showing how to create true private variables
- * 
- * Other examples such as Crockford's, http://www.crockford.com/javascript/private.html,
- * initialize functions in the constructor, which is bad for performance. 
- * 
- */
+// Utilize a closure to keep the private members private
 var Person = (function() {
-	// create a lookup function for easy private retrieval 
-	function pvt(obj) {
-		if (typeof obj._pkg == 'undefined')
-			obj._pkg = store.push({_self : obj})-1;
-		
-		// ensure obj === the original obj and not just an === ._pkg value 
-		return store[obj._pkg]._self === obj ? store[obj._pkg] : null;
-	}
-	
-	// create a closure variable to store privates in
-	var store = []; // private store for instances;
-	
-	
 
-	var chromosomes = 48; // private static variable 
-	
-	// create functions in the same prototypical/classical manner
-	var Self = function(isDancing) {
-		pvt(this).dancing = isDancing;
-	};
-	
-	Self.prototype = {
-		// access the private variable in a public method
-		dance: function(){
-			return pvt(this).dancing;
-		},
-		// access the the private static variable in a public method
-		getChromosomeCount: function() {
-			return chromosomes;
-		}
-	};
-	return Self;
+  // Generate a private instance member accessor function "pvt"
+  var pvt = Pvt(),
+
+    // private static variable 
+    species = "Homo sapiens";
+  
+  var Self = function(isDancing) {
+    // set private instance member
+    pvt(this).dancing = isDancing;
+  };
+  
+  Self.prototype = {
+
+    // public methods
+    dance: function(){
+      // get private instance member
+      return pvt(this).dancing;
+    },
+    quitDancing: function() {
+      // set private instance member
+      pvt(this).dancing = false;
+    },
+    getSpecies: function() {
+      // get private static member
+      return species;
+    },
+    setSpecies: function(newSpecies) {
+      // set private static member
+      species = newSpecies;
+    }
+  };
+  return Self;
+  
 })();
 
-// Check to see if private variables are in fact private
 var p = new Person(true);
+
+// Check public member access to private members
 p.dance(); // => true
-p.getChromosomeCount; // => 48
-Person.getChromosomeCount; // => 48
-p.dancing; // undefined
-p.chromosomes; // undefined
+p.quitDancing(); p.dance(); // => false
+
+p.getSpecies(); // => "Homo sapipens"
+p.setSpecies("Ninjus Invisibus"); p.getSpecies(); // => "Ninjus Invisibus"
+
+// Check to see if private members are in fact private
+typeof Person.species == 'undefined'; // => true
+typeof Person.dancing == 'undefined'; // => true
+typeof p.dancing == 'undefined'; // => true
+typeof p.species == 'undefined'; // => true
